@@ -1,0 +1,48 @@
+@mixin box($width: 400px, $height: 400px, $color: black) {
+	width: $width;
+  height: $height;
+	background-color: $color;
+  margin: 50px;
+}
+
+@mixin triangle(
+	$size: 15px,
+	$triangle-color: darkcyan,
+	$top-left: false,
+	$top-right: false,
+	$bottom-left: false,
+	$bottom-right: false
+) {
+	position: relative;
+	z-index: 1;
+
+	&::before {
+		position: absolute;
+		z-index: -1;
+		width: 0;
+		height: 0;
+		border-right: $size solid transparent;
+		border-bottom: $size solid $triangle-color;
+		border-left: $size solid transparent;
+
+		@if ($top-left) {
+			left: 0;
+			top: 0;
+			transform: rotate(90deg);
+		} @else if($top-right) {
+			top: 0;
+			right: 0;
+			transform: rotate(320deg);
+		} @else if ($bottom-left) {
+			bottom: 0;
+			left: 0;
+			transform: rotate(220deg);
+		} @else if ($bottom-right) {
+			bottom: 0;
+			right: 0;
+			transform: rotate(180deg);
+		}
+
+		content: '';
+	}
+}

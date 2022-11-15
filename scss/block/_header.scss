@@ -1,0 +1,8 @@
+.box{
+  @include box;
+}
+
+.triangle {
+  @include triangle ($top-right:true);
+
+}
